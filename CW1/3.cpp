@@ -26,8 +26,8 @@ int main() {
 	}
 	int c;
 	if (kmax<kmin){c = kmax; kmax = kmin; kmin = c;}
-	while ((kmin+1)!=kmax){
-		cout << arr[kmin+1];
+	while (kmin!=kmax+1){
+		cout << arr[kmin];
 		kmin++;
 	}
 }
