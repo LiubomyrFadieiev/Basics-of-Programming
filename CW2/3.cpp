@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <cstring>
 using namespace std;
@@ -7,8 +8,8 @@ using namespace std;
 // 3) Input: asdfghasdfgh => " ";
 
 int main() {
-	const int Max_N = 100;
-	char array[Max_N];
+	int Max_N = 100;
+	char* array = new char[Max_N];
 	cout << "Input a string array" << endl;
 	cin.get(array,Max_N);
 	int len = strlen(array);
@@ -37,4 +38,5 @@ int main() {
 		}
 	}
 	cout << unicArray;
+	delete []array;
 }
