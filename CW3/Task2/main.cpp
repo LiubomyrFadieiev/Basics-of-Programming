@@ -30,6 +30,7 @@ void take(string* a, int &k, string text){
 			}
 		}
 	}
+	out.close()
 }
 
 int main() {
@@ -54,4 +55,5 @@ int main() {
 			inr << a[i] << "\n";
 		}
 	}
+	delete[] a;
 }
