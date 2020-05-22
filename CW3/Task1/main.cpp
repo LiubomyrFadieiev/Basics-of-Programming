@@ -54,4 +54,5 @@ int main() {
 			inr << a[i] << "\n";
 		}
 	}
+	delete[] a;
 }
