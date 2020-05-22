@@ -1,28 +1,57 @@
 #include <iostream>
-#include <cmath>
+#include <string>
+#include <fstream>
 using namespace std;
 
-struct Complex{
-	int a;
-	int b;
-
-	float module(){
-		int pow = a*a + b*b;
-		return sqrt(pow);
+void take(string* a, int &k, string text){
+	ifstream out;
+	out.open(text);
+	string line;
+	bool repeat, take;
+	if(out.is_open()){
+		while(getline(out,line)){
+			repeat = false; take = false;
+			for (int i = 0; i<k; i++){
+				if(line==a[i]){
+					a[i] = "";
+					repeat = true;
+				}
+			}
+			if (!repeat){
+			for (int i = 0; i<k; i++){
+				if(a[i]==""){
+					a[i] = line;
+					take = true;
+				}
+			}
+			}
+			if(!repeat && !take){
+				a[k++] = line;
+			}
+		}
 	}
-
-	Complex(int a, int b){
-		this->a = a;
-		this->b = b;
-	}
-};
+}
 
 int main() {
-  	int a,b;
-	cout << "Please input real number in complex number \na = ";
-	cin >> a;
-	cout << "Please input real number in complex number \nb = ";
-	cin >> b;
-  	Complex comp(a,b);
-	cout << '|' << comp.a << '+' << comp.b << "i| = " << comp.module();
+	string* a = new string[20]; 
+	string line;
+	ifstream out;
+	out.open("in1.txt");
+	int k = 0;
+	if(out.is_open()){
+		while(getline(out,line)){
+			a[k++] = line;
+		}
+	}
+	out.close();
+	string b[2] = {"in2.txt","in3.txt"};
+	take(a,k,b[0]);
+	take(a,k,b[1]);
+	ofstream inr;
+	inr.open("out.txt");
+	for (int i = 0; i<k; i++){
+		if(a[i]!=""){
+			inr << a[i] << "\n";
+		}
+	}
 }
